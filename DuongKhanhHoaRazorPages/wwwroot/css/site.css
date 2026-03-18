@@ -1,3 +1,15 @@
+:root {
+  --primary-color: #E05A22;
+  --primary-dark: #C84A16;
+  --primary-light: #E67D48;
+  --text-dark: #2D3436;
+  --text-light: #636E72;
+  --bg-light: #FAFAFA;
+  --border-color: #DFE6E9;
+  --success: #27AE60;
+  --error: #E74C3C;
+}
+
 html {
   font-size: 14px;
 }
@@ -9,7 +21,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--primary-color);
 }
 
 html {
@@ -19,4 +31,170 @@ html {
 
 body {
   margin-bottom: 60px;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+}
+
+/* Login Page Styles */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+}
+
+.login-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  width: 100%;
+  padding: 40px;
+}
+
+.login-card .logo-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-card .logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.login-card .logo-subtitle {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.login-card .form-group {
+  margin-bottom: 20px;
+}
+
+.login-card .form-label {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.login-card .form-control {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.login-card .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(224, 90, 34, 0.1);
+}
+
+.login-card .role-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.login-card .role-option {
+  flex: 1;
+  position: relative;
+}
+
+.login-card .role-option input[type="radio"] {
+  display: none;
+}
+
+.login-card .role-option label {
+  display: block;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: var(--text-light);
+}
+
+.login-card .role-option input[type="radio"]:checked + label {
+  border-color: var(--primary-color);
+  background-color: rgba(224, 90, 34, 0.05);
+  color: var(--primary-color);
+}
+
+.login-card .btn-login {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+.login-card .btn-login:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(224, 90, 34, 0.3);
+}
+
+.login-card .btn-login:active {
+  transform: translateY(0);
+}
+
+.login-card .forgot-password {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-card .forgot-password a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.login-card .forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.login-card .form-text {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.login-card .alert {
+  border-radius: 8px;
+  border: 1px solid #DDD;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.login-card .alert-danger {
+  background-color: #FADBD8;
+  border-color: #F5B7B1;
+  color: #C0392B;
+}
+
+@media (max-width: 576px) {
+  .login-card {
+    padding: 30px 20px;
+    max-width: 100%;
+    margin: 20px;
+  }
+  
+  .login-card .logo-text {
+    font-size: 24px;
+  }
 }

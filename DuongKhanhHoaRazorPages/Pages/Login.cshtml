@@ -1,0 +1,96 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login - FU News Management System";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo-section">
+                <div class="logo-text">FU News</div>
+                <div class="logo-subtitle">FPT University Management System</div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @Model.ErrorMessage
+                </div>
+            }
+
+            <form method="post" asp-page="Login">
+                <!-- Role Selection -->
+                <div class="form-group">
+                    <label class="form-label">Select Your Role</label>
+                    <div class="role-selector">
+                        <div class="role-option">
+                            <input type="radio" id="admin" name="role" value="admin" 
+                                   @(Model.SelectedRole == "admin" ? "checked" : "") />
+                            <label for="admin">Admin</label>
+                        </div>
+                        <div class="role-option">
+                            <input type="radio" id="staff" name="role" value="staff" 
+                                   @(Model.SelectedRole == "staff" ? "checked" : "") />
+                            <label for="staff">Staff</label>
+                        </div>
+                        <div class="role-option">
+                            <input type="radio" id="lecturer" name="role" value="lecturer" 
+                                   @(Model.SelectedRole == "lecturer" ? "checked" : "") />
+                            <label for="lecturer">Lecturer</label>
+                        </div>
+                    </div>
+                    <span asp-validation-for="SelectedRole" class="text-danger"></span>
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" 
+                           asp-for="Email" placeholder="your@email.com" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <small class="form-text">Use your FPT University email address</small>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" 
+                           asp-for="Password" placeholder="••••••••" required />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe" 
+                           asp-for="RememberMe" />
+                    <label class="form-check-label" for="rememberMe">
+                        Remember me on this device
+                    </label>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-login">Sign In</button>
+
+                <!-- Forgot Password -->
+                <div class="forgot-password">
+                    <a href="@Url.Page("ForgotPassword")">Forgot your password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
