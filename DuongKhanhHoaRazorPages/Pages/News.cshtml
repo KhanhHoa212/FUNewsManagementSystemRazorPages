@@ -1,0 +1,262 @@
+@page
+@model NewsModel
+@{
+    ViewData["Title"] = "News - FU News Management System";
+}
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" href="/">📰 FU News</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/News">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-logout" onclick="location.href='/Login'">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="landing-container">
+    <div class="container-fluid">
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-box">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search news by title..." onkeyup="filterNews()">
+            </div>
+
+            <div class="filter-group">
+                <label for="categoryFilter">Filter by Category:</label>
+                <select id="categoryFilter" onchange="filterNews()">
+                    <option value="">All Categories</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Business">Business</option>
+                    <option value="Education">Education</option>
+                    <option value="Event">Event</option>
+                    <option value="Announcement">Announcement</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Featured Article Section -->
+        <div class="featured-section">
+            <div class="featured-article">
+                <div class="featured-content">
+                    <div class="featured-text">
+                        <div class="featured-meta">
+                            <span>📅 March 18, 2026</span>
+                            <span class="category-badge">Education</span>
+                        </div>
+                        <h2>FPT University Launches New Digital Innovation Center</h2>
+                        <p>Discover how FPT University is advancing education through cutting-edge technology and innovative learning methodologies. This groundbreaking initiative will shape the future of tech education in Vietnam.</p>
+                        <a href="#" class="btn-read-more">Read Full Article →</a>
+                    </div>
+                    <div class="featured-image">Featured Article Image</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Grid Section -->
+        <div id="newsContainer">
+            <div class="news-grid" id="newsGrid">
+                <!-- News Item 1 -->
+                <div class="news-card" data-category="Technology" data-title="artificial intelligence advancement">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Technology</span>
+                        <h3 class="news-title">Artificial Intelligence Advancement in Education</h3>
+                        <p class="news-excerpt">Explore the latest developments in AI technology and how it's transforming educational experiences for students worldwide.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 17, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 2 -->
+                <div class="news-card" data-category="Business" data-title="new partnerships announced">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Business</span>
+                        <h3 class="news-title">New Strategic Partnerships Announced</h3>
+                        <p class="news-excerpt">FPT University announces exciting new partnerships with leading technology companies to enhance student opportunities.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 16, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 3 -->
+                <div class="news-card" data-category="Event" data-title="tech summit 2026">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Event</span>
+                        <h3 class="news-title">Tech Summit 2026 - Save the Date</h3>
+                        <p class="news-excerpt">Join us for the largest tech summit of the year featuring industry leaders, workshops, and networking opportunities.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 15, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 4 -->
+                <div class="news-card" data-category="Education" data-title="scholarship program expansion">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Education</span>
+                        <h3 class="news-title">Scholarship Program Expansion</h3>
+                        <p class="news-excerpt">Increased scholarship opportunities for deserving students pursuing technology and business programs at FPT University.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 14, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 5 -->
+                <div class="news-card" data-category="Announcement" data-title="campus improvements">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Announcement</span>
+                        <h3 class="news-title">Major Campus Infrastructure Improvements</h3>
+                        <p class="news-excerpt">FPT University invests in state-of-the-art facilities including new labs, learning spaces, and recreational areas for students.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 13, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 6 -->
+                <div class="news-card" data-category="Technology" data-title="cybersecurity workshop">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Technology</span>
+                        <h3 class="news-title">Cybersecurity Workshop Series Launches</h3>
+                        <p class="news-excerpt">Learn essential cybersecurity skills from industry experts in this comprehensive workshop series designed for students.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 12, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 7 -->
+                <div class="news-card" data-category="Business" data-title="startup incubator program">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Business</span>
+                        <h3 class="news-title">Startup Incubator Program Opens</h3>
+                        <p class="news-excerpt">FPT University launches an innovative startup incubator program to support entrepreneurial ventures by students.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 11, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 8 -->
+                <div class="news-card" data-category="Event" data-title="alumni networking evening">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Event</span>
+                        <h3 class="news-title">Alumni Networking Evening - Spring Edition</h3>
+                        <p class="news-excerpt">Connect with FPT University alumni working at top tech companies and explore career opportunities.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 10, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 9 -->
+                <div class="news-card" data-category="Education" data-title="international exchange program">
+                    <div class="news-image">Article Image</div>
+                    <div class="news-body">
+                        <span class="news-category">Education</span>
+                        <h3 class="news-title">International Exchange Program Expansion</h3>
+                        <p class="news-excerpt">New partnerships with universities worldwide enable FPT students to study and gain experience globally.</p>
+                        <div class="news-footer">
+                            <span class="news-date">📅 Mar 9, 2026</span>
+                            <a href="#" class="btn-read">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-section">
+                <ul class="pagination">
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- No Results Message (Hidden by default) -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">📭</div>
+                <h3>No news found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterNews() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const categoryFilter = document.getElementById('categoryFilter').value;
+    const newsCards = document.querySelectorAll('.news-card');
+    let visibleCount = 0;
+
+    newsCards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const category = card.getAttribute('data-category');
+
+        const matchesSearch = title.includes(searchInput);
+        const matchesCategory = !categoryFilter || category === categoryFilter;
+
+        if (matchesSearch && matchesCategory) {
+            card.style.display = '';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    const noResults = document.getElementById('noResults');
+    if (visibleCount === 0) {
+        noResults.style.display = 'block';
+    } else {
+        noResults.style.display = 'none';
+    }
+}
+</script>
